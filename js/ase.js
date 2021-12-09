@@ -2,21 +2,16 @@
  * Cuando inicia la pagina
  */
 $(document).ready(function () {
-
-    //$('#btnActualizar').attr('style', 'display: none !important');
-    //$('#btnActualizarClone').attr('style', 'display: none !important');
-    //$("#user").empty();
     var idUser = localStorage.getItem('idUser');
     console.log(idUser);
     var nombre = localStorage.getItem('nombre');
-    //alert("Bienvenido " + nombre);
-    //$("#name").text(nombre);
+    if(nombre != null){
+        $("#name").addClass("border border-info rounded-3 text-white p-2");
+        $("#name").text(nombre);
+    }
     getPerfil(idUser);
     getClones();
-    //consultarUsers();
-    //consultarProductos();
-    //$("#name").text(idUser);
-    //getPerfil(idUser);
+    
 });
 
 /**
@@ -28,7 +23,10 @@ $("#close").click(function () {
 });
 
 
-
+/**
+ * cargar perfil asesor comercial
+ * @param {*} idUser 
+ */
 function getPerfil(idUser) {
     $.ajax({
         url: 'http://localhost:8080/api/user/' + idUser,
@@ -54,6 +52,9 @@ function getPerfil(idUser) {
     });
 }
 
+/**
+ * cargar lista de clones
+ */
 function getClones() {
     $.ajax({
         url: 'http://localhost:8080/api/clone/all',
@@ -62,7 +63,7 @@ function getClones() {
         dataType: 'json',
         success: function (clone) {
             $("#infoClone").empty();
-            if (clone.lenght == 0) {
+            if (clone.length == 0) {
                 let row = $("<tr>");
                 row.append($("<td colspan='8' class='fw-bolder text-uppercase'>").text("no hay registros"));
                 $("#infoClone").append(row);
