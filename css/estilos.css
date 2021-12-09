@@ -1,0 +1,50 @@
+body {
+    margin: 0px;
+}
+header {
+    border-bottom: 1px solid grey;
+}
+header img {
+    width: 100%;
+    height: 100%;
+}
+/*
+    https://www.svgrepo.com/show/353405/apiary.svg
+*/
+.color {
+    background-color: #39A388;
+    border-radius: 4px;
+    padding: 5px;
+}
+/*#name {
+    width: 200px;
+}*/
+#icon-login {
+    width: 50px;
+    height: 50px;
+    
+}
+.cursor {
+    cursor: pointer;
+    
+}
+input:focus, select:focus, select, input.form-control:focus {
+
+    outline:none !important;
+
+    outline-width: 0 !important;
+
+    box-shadow: none;
+
+    /*-moz-box-shadow: none;
+
+    -webkit-box-shadow: none;*/
+
+}
+#name{
+    position: relative;
+    top: 27px;
+}
+i {
+    cursor: pointer;
+}
