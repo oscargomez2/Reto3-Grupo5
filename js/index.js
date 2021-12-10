@@ -14,8 +14,9 @@ $("#login").click(function () {
                 if(user.id==null){
                     alert("Usuario o contraseña incorrectos")
                 }else{
-                    localStorage.setItem("idUser",user.id);
-                    localStorage.setItem("nombre",user.name);
+                    //localStorage.setItem("idUser",user.id);
+                    //localStorage.setItem("nombre",user.name);
+                    localStorage.setItem("datos",JSON.stringify(user))
                     if(user.type == "ADM" || user.type == "administrador"){
                         window.location.href = "../pages/admin.html";
                     }else if(user.type == "COORD" || user.type == "coordinador"){

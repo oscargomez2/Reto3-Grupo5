@@ -77,7 +77,8 @@ function getClones() {
                     row.append($("<td>").text(element.hardDrive));
                     row.append($("<td>").text(element.description));
                     row.append($("<td>").text(element.price));
-                    row.append($("<td>").append("<img src='"+element.photography+"' width='50%' height='50px'>"));
+                    row.append($("<td>").append("<img src='"+element.photography+"' width='100%' height='50px' alt='PC'>"));
+                    $("#infoClone").append(row);
                 });
             }
         },
