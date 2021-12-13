@@ -64,7 +64,8 @@
         <div class="row">
             <div class="col">
                 <table class="table table-dark table-bordered text-center align-middle caption-top">
-                    <caption class="text-white text-center fs-1 text-uppercase mb-3">ordenes asesores comerciales</caption>
+                    <caption class="text-white text-center fs-1 text-uppercase mb-3">ordenes asesores comerciales
+                    </caption>
                     <thead class="table-success">
                         <tr>
                             <th>Identificacion</th>
@@ -88,37 +89,37 @@
 
     <div class="modal fade" id="registrarOrden" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 90% !important;">
-        <div class="modal-content">
-            <div class="modal-header">
-                
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <table class="table table-bordered text-center align-middle">
-                        <thead class="table-primary">
-                            <tr">
-                                <th>Codigo</th>
-                                <th>Marca</th>
-                                <th>Categoria</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Stock</th>
-                                <th>Foto</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listaProductos">
+            <div class="modal-content" style="background-color: #2E4C6D;">
+                <div class="modal-header" style="border: none;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <table class="table caption-top table-dark table-bordered text-center align-middle">
+                            <caption class="text-white text-center text-uppercase fs-1">Detalle De La Orden</caption>
+                            <thead class="table-success">
+                                <tr">
+                                    <th>Codigo</th>
+                                    <th>Marca</th>
+                                    <th>Procesador</th>
+                                    <th>S.Operativo</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Stock</th>
+                                    <th>Foto</th>
+                                    </tr>
+                            </thead>
+                            <tbody class="text-white" id="listaProductos">
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border: none;">
+
                 </div>
             </div>
-            <div class="modal-footer">
-            
-            </div>
-        </div>
         </div>
     </div>
 
@@ -137,9 +138,9 @@
         if (localStorage.getItem("datos") != null) {
             let myData = localStorage.getItem("datos");
             firstData = JSON.parse(myData);
-            if (firstData.type=="COORD"||firstData.type=="coordinador"){
+            if (firstData.type == "COORD" || firstData.type == "coordinador") {
                 console.log("Ingresó correctamente");
-            }else{
+            } else {
                 cerrar();
             }
         } else {

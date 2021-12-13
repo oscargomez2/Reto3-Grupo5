@@ -11,6 +11,7 @@ $(document).ready(function () {
         $("#name").addClass("border border-info rounded-3 text-white p-2");
         $("#name").text(datos.name);
     }
+    console.log(datos.zone);
     getPerfil(datos.id);
     getOrdenes(datos.zone);
     //consultarUsers();
@@ -82,7 +83,7 @@ function getOrdenes(zona) {
                     row.append($("<td>").text(element.salesMan.name));
                     row.append($("<td>").text(element.salesMan.email));
                     row.append($("<td>").text(element.registerDay.split("T")[0]));
-                    row.append($("<td>").text(element.salesMan.identification));
+                    row.append($("<td>").text(element.id));
                     row.append($("<td>").text(element.status));
                     row.append($("<td class='px-0'><button class='btn btn-primary py-1 px-4 m-0' onclick='verDetalle(" + element.id + ")'>Ver Detalle</button>"));
                     $("#infoOrdenes").append(row);
@@ -120,11 +121,12 @@ function verDetalle(idOrder) {
                 let row = $("<tr>");
                 row.append($("<td>").text(p[key].id));
                 row.append($("<td>").text(p[key].brand));
-                row.append($("<td>").text("tecnologia"));
-                row.append($("<td>").text("prueba"));
+                row.append($("<td>").text(p[key].procesor));
+                row.append($("<td>").text(p[key].os));
                 row.append($("<td>").text(p[key].description));
                 row.append($("<td>").text(p[key].price));
-                row.append($("<td id='cambio'>").text(""));
+                //row.append($("<td id='cambio'>").text(""));
+                row.append($("<td>").text(q[key]));
                 row.append($("<td>").text(p[key].quantity));
                 row.append($("<td>").append("<img src='" + p[key].photography + "' alt='pc' width='100%' height='50px'>"));
                 $("#listaProductos").append(row);

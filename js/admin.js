@@ -10,8 +10,8 @@ $(document).ready(function () {
     datosUser = JSON.parse(datosUser);
     var idUser = datosUser.id;
     var nombre = datosUser.name;
-    alert("Bienvenido " + nombre);
-    $("#name").text(nombre);
+    console.log(nombre);
+    $("#nameUser").text(nombre);
     consultarUsers();
     consultarProductos();
     //$("#name").text(idUser);
@@ -31,6 +31,9 @@ $("#close").click(function () {
  */
 $("#exampleModalToggle2").on('hidden.bs.modal', function () {
     //alert("Esta accion se ejecuta al cerrar el modal");
+    $('#btnRegistrar').attr('style', 'display: block !important');
+    $('#btnActualizar').attr('style', 'display: none !important');
+    $(':input').val('');
     consultarUsers();
 });
 /****************************************************************************************************************/
@@ -40,6 +43,9 @@ $("#exampleModalToggle2").on('hidden.bs.modal', function () {
  */
 $("#exampleModalToggle3").on('hidden.bs.modal', function () {
     //alert("Esta accion se ejecuta al cerrar el modal");
+    $('#btnRegistrarClone').attr('style', 'display: block !important');
+    $('#btnActualizarClone').attr('style', 'display: none !important');
+    $(':input').val('');
     consultarProductos();
 });
 /****************************************************************************************************************/
@@ -79,7 +85,7 @@ function consultarUsers() {
                     } else if (user[i].type == "ADM" || user[i].type == "administrador") {
                         row.append($("<td>").text("Administrador"));
                     }
-                    row.append($("<td class='px-0 py-2'> <button class='btn btn-danger mx-2' onclick='borrarUser(" + user[i].id + ")'>Borrar</button>"
+                    row.append($("<td><button class='btn btn-danger me-2' onclick='borrarUser(" + user[i].id + ")'>Borrar</button>"
                         + "<button class='btn btn-warning text-white' onclick='editarUser(" + user[i].id + ")'>Editar</button>"));
                     $("#infoUsers").append(row);
 
@@ -246,7 +252,7 @@ $("#btnRegistrar").click(function () {
             contentType: 'application/json',
             dataType: 'json',
             success: function (user) {
-                if(user==null){
+                if(user.id==null){
                     $.ajax({
                         url: 'http://localhost:8080/api/user/new',
                         data: JSON.stringify({
@@ -272,8 +278,8 @@ $("#btnRegistrar").click(function () {
                                 //$("#email").focus();
                             } else {
                                 alert('Cuenta creada de forma correcta.');
-                                $("#exampleModalToggle2").modal("hide");
-                                $(':input').val('')
+                                //$("#exampleModalToggle2").modal("hide");
+                                $(':input').val('');
                                 $("#id").focus();
                                 //consultarUsers();
                             }
@@ -328,7 +334,7 @@ function consultarProductos() {
                     }
                     row.append($("<td>").text(clone[i].price));
                     row.append($("<td>").text(clone[i].quantity));
-                    row.append($("<td class='px-0 py-2'> <button class='btn btn-danger mx-2' onclick='borrarProducto(" + clone[i].id + ")'>Borrar</button>"
+                    row.append($("<td><button class='btn btn-danger me-2' onclick='borrarProducto(" + clone[i].id + ")'>Borrar</button>"
                         + "<button class='btn btn-warning text-white' onclick='editarProducto(" + clone[i].id + ")'>Editar</button>"));
                     $("#infoProductos").append(row);
                 }
@@ -401,6 +407,7 @@ function editarProducto(id) {
 
             $("#precio").val(clone.price);
             $("#cantidad").val(clone.quantity);
+            $("#foto").val(clone.photography);
             $("#exampleModalToggle3").modal("show");
             //actualizarUser(user);
 
@@ -433,7 +440,8 @@ function actualizarProducto() {
     var stock = $.trim($("#stock").val());
     var precio = $.trim($("#precio").val());
     var cantidad = $.trim($("#cantidad").val());
-    if (id == "" || marca == "" || procesador == "" || os == "" || descripcion == "" || memoria == "" || almacenamiento == "" || stock == "" || precio == "" || cantidad == "") {
+    var foto = $.trim($("#foto").val());
+    if (id == "" || marca == "" || procesador == "" || os == "" || descripcion == "" || memoria == "" || almacenamiento == "" || stock == "" || precio == "" || cantidad == "" || foto == "") {
         alert("Todos los campos son obligatorios");
         /*Nombre.Style("border-bottom: 1px solid grey");*/
         /*$("#nombre").css("border", "1px solid red");
@@ -451,7 +459,8 @@ function actualizarProducto() {
                 "hardDrive": almacenamiento,
                 "availability": stock,
                 "price": precio,
-                "quantity": cantidad
+                "quantity": cantidad,
+                "photography": foto
             }),
             type: 'PUT',
             contentType: 'application/json',
@@ -486,7 +495,8 @@ $("#btnRegistrarClone").click(function () {
     var stock = $.trim($("#stock").val());
     var precio = $.trim($("#precio").val());
     var cantidad = $.trim($("#cantidad").val());
-    if (id == "" || marca == "" || procesador == "" || os == "" || descripcion == "" || memoria == "" || almacenamiento == "" || stock == "" || precio == "" || cantidad == "") {
+    var foto = $.trim($("#foto").val());
+    if (id == "" || marca == "" || procesador == "" || os == "" || descripcion == "" || memoria == "" || almacenamiento == "" || stock == "" || precio == "" || cantidad == "" || foto == "") {
         alert("Todos los campos son obligatorios");
         /*Nombre.Style("border-bottom: 1px solid grey");*/
         /*$("#nombre").css("border", "1px solid red");
@@ -504,7 +514,8 @@ $("#btnRegistrarClone").click(function () {
                 "hardDrive": almacenamiento,
                 "availability": stock,
                 "price": precio,
-                "quantity": cantidad
+                "quantity": cantidad,
+                "photography": foto
             }),
             type: 'POST',
             contentType: 'application/json',
