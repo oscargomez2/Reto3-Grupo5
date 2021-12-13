@@ -16,7 +16,7 @@ $("#login").click(function () {
                 }else{
                     //localStorage.setItem("idUser",user.id);
                     //localStorage.setItem("nombre",user.name);
-                    localStorage.setItem("datos",JSON.stringify(user))
+                    localStorage.setItem("datos",JSON.stringify(user));
                     if(user.type == "ADM" || user.type == "administrador"){
                         window.location.href = "../pages/admin.html";
                     }else if(user.type == "COORD" || user.type == "coordinador"){
@@ -27,6 +27,8 @@ $("#login").click(function () {
                     
                 }
             }
+        }).fail( function() {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
 });

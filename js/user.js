@@ -57,6 +57,8 @@ $("#btnRegistrar").click(function () {
                     //consultarUsers();
                 }              
             }
+        }).fail( function() {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
 });
@@ -94,6 +96,8 @@ function consultarUsers() {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /********************************************************************************************************************/
@@ -119,6 +123,8 @@ function borrarUser(id) {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /*************************************************************************************************************/
@@ -159,6 +165,8 @@ function editarUser(id) {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /********************************************************************************************************************/
@@ -208,6 +216,8 @@ function actualizarUser() {
                 $('#btnLogin').attr('style', 'display: block !important');
                 $('#btnActualizar').attr('style', 'display: none !important');                
             }
+        }).fail( function() {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
 }

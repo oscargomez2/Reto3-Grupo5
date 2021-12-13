@@ -24,6 +24,7 @@ $(document).ready(function () {
  */
 $("#close").click(function () {
     localStorage.clear();
+    localStorage.removeItem('datos');
     window.location.href = "../index.html";
 });
 
@@ -54,6 +55,8 @@ function getPerfil(idUser) {
             row.append($("<td colspan='5' class='fw-bolder text-uppercase'>").text("no se encontro el perfil"));
             $("#infoPerfil").append(row);
         }
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 
@@ -91,6 +94,8 @@ function getOrdenes(zona) {
             row.append($("<td colspan='7' class='fw-bolder text-uppercase'>").text("no se pudo consultar las ordenes"));
             $("#infoOrdenes").append(row);
         }
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 
@@ -161,6 +166,8 @@ function verDetalle(idOrder) {
             row.append($("<td colspan='9' class='fw-bolder text-uppercase'>").text("no se encontro el perfil"));
             $("#listaProductos").append(row);
         }
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
     $("#registrarOrden").modal("show");
 }

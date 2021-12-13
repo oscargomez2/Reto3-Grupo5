@@ -2,16 +2,16 @@
  * Cuando inicia la pagina
  */
 $(document).ready(function () {
-    var idUser = localStorage.getItem('idUser');
-    console.log(idUser);
-    var nombre = localStorage.getItem('nombre');
+    var datosUser = localStorage.getItem('datos');
+    datosUser = JSON.parse(datosUser);
+    var idUser = datosUser.id;
+    var nombre = datosUser.name;
     if(nombre != null){
         $("#name").addClass("border border-info rounded-3 text-white p-2");
         $("#name").text(nombre);
     }
     getPerfil(idUser);
     getClones();
-    
 });
 
 /**
@@ -19,6 +19,7 @@ $(document).ready(function () {
  */
 $("#close").click(function () {
     localStorage.clear();
+    localStorage.removeItem('datos');
     window.location.href = "../index.html";
 });
 
@@ -49,6 +50,8 @@ function getPerfil(idUser) {
             row.append($("<td colspan='5' class='fw-bolder text-uppercase'>").text("no se pudo consultar el perfil"));
             $("#infoPerfil").append(row);
         }
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 
@@ -87,5 +90,7 @@ function getClones() {
             row.append($("<td colspan='8' class='fw-bolder text-uppercase'>").text("no se pudo consultar los productos"));
             $("#infoClone").append(row);
         }
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }

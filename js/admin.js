@@ -6,9 +6,10 @@ $(document).ready(function () {
     $('#btnActualizar').attr('style', 'display: none !important');
     $('#btnActualizarClone').attr('style', 'display: none !important');
     //$("#user").empty();
-    var idUser = localStorage.getItem('idUser');
-    console.log(idUser);
-    var nombre = localStorage.getItem('nombre');
+    var datosUser = localStorage.getItem('datos');
+    datosUser = JSON.parse(datosUser);
+    var idUser = datosUser.id;
+    var nombre = datosUser.name;
     alert("Bienvenido " + nombre);
     $("#name").text(nombre);
     consultarUsers();
@@ -21,8 +22,7 @@ $(document).ready(function () {
  * cerrar sesion
  */
 $("#close").click(function () {
-    localStorage.removeItem('idUser');
-    localStorage.removeItem('nombre');
+    localStorage.removeItem('datos');
     window.location.href = "../index.html";
 });
 
@@ -95,6 +95,8 @@ function consultarUsers() {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /********************************************************************************************************************/
@@ -120,6 +122,8 @@ function borrarUser(id) {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /*************************************************************************************************************/
@@ -160,6 +164,8 @@ function editarUser(id) {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /********************************************************************************************************************/
@@ -208,6 +214,8 @@ function actualizarUser() {
                 $('#btnRegistrar').attr('style', 'display: block !important');
                 $('#btnActualizar').attr('style', 'display: none !important');
             }
+        }).fail( function() {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
 }
@@ -226,44 +234,61 @@ $("#btnRegistrar").click(function () {
     var Password = $.trim($("#password").val());
     var Zona = $.trim($("#zona").val());
     var Tipo = $.trim($("#tipo").val());
-    if (Id == "" || Identificacion == "" || Nombre == "" || Direccion == "" || Celular == "" || Email == "" || Password == "" || Zona == "" || Tipo == "") {
+    if (Id == "" || Identificacion == "" || Nombre == "" || Direccion == "" || Celular == "" || Email == "" || Password == "" || Zona == "" || Tipo == "" || Tipo == null) {
         alert("Todos los campos son obligatorios");
         /*Nombre.Style("border-bottom: 1px solid grey");*/
         /*$("#nombre").css("border", "1px solid red");
         /*$("#validar").modal("show");*/
     } else {
         $.ajax({
-            url: 'http://localhost:8080/api/user/new',
-            data: JSON.stringify({
-                "id": Id,
-                "identification": Identificacion,
-                "name": Nombre,
-                "address": Direccion,
-                "cellPhone": Celular,
-                "email": Email,
-                "password": Password,
-                "zone": Zona,
-                "type": Tipo
-            }),
-            type: 'POST',
+            url: 'http://localhost:8080/api/user/' + Id,
+            type: 'GET',
             contentType: 'application/json',
             dataType: 'json',
-            //error: function (result) { alert('Error: Ver log para detalles.'); console.log(result); },
-            success: function (respuesta) {
-                console.log(respuesta);
-                if (respuesta.id == null) {
-                    alert("No fue posible crear la cuenta.")
-                    //$("#nombre").focus();
-                    //$("#email").focus();
-                } else {
-                    alert('Cuenta creada de forma correcta.');
-                    //$("#exampleModalToggle2").modal("hide");
-                    $(':input').val('')
-                    $("#id").focus();
-                    //consultarUsers();
+            success: function (user) {
+                if(user==null){
+                    $.ajax({
+                        url: 'http://localhost:8080/api/user/new',
+                        data: JSON.stringify({
+                            "id": Id,
+                            "identification": Identificacion,
+                            "name": Nombre,
+                            "address": Direccion,
+                            "cellPhone": Celular,
+                            "email": Email,
+                            "password": Password,
+                            "zone": Zona,
+                            "type": Tipo
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        //error: function (result) { alert('Error: Ver log para detalles.'); console.log(result); },
+                        success: function (respuesta) {
+                            console.log(respuesta);
+                            if (respuesta.id == null) {
+                                alert("No fue posible crear la cuenta.")
+                                //$("#nombre").focus();
+                                //$("#email").focus();
+                            } else {
+                                alert('Cuenta creada de forma correcta.');
+                                $("#exampleModalToggle2").modal("hide");
+                                $(':input').val('')
+                                $("#id").focus();
+                                //consultarUsers();
+                            }
+                        }
+                    }).fail( function() {
+                        alert("Hubo un error en la aplicación, intentelo más tarde.");
+                    });
+                }else{
+                    alert("El id del usuario ya existe, por favor intente con uno diferente");
                 }
             }
+        }).fail( function() {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
+        
     }
 });
 /**********************************************************************************************************************/
@@ -314,6 +339,8 @@ function consultarProductos() {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /***************************************************************************************************************************/
@@ -338,6 +365,8 @@ function borrarProducto(id) {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /************************************************************************************************************/
@@ -384,6 +413,8 @@ function editarProducto(id) {
             console.log(result);
         },*/
 
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
 /********************************************************************************************************************/
@@ -434,6 +465,8 @@ function actualizarProducto() {
                 $('#btnRegistrarClone').attr('style', 'display: block !important');
                 $('#btnActualizarClone').attr('style', 'display: none !important');
             }
+        }).fail( function() {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
 }
@@ -484,6 +517,8 @@ $("#btnRegistrarClone").click(function () {
                 $("#idClone").focus();
 
             }
+        }).fail( function() {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
 });
