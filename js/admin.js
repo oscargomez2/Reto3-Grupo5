@@ -101,7 +101,7 @@ function consultarUsers() {
             console.log(result);
         },*/
 
-    }).fail( function() {
+    }).fail(function () {
         alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
@@ -128,7 +128,7 @@ function borrarUser(id) {
             console.log(result);
         },*/
 
-    }).fail( function() {
+    }).fail(function () {
         alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
@@ -170,7 +170,7 @@ function editarUser(id) {
             console.log(result);
         },*/
 
-    }).fail( function() {
+    }).fail(function () {
         alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
@@ -220,7 +220,7 @@ function actualizarUser() {
                 $('#btnRegistrar').attr('style', 'display: block !important');
                 $('#btnActualizar').attr('style', 'display: none !important');
             }
-        }).fail( function() {
+        }).fail(function () {
             alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
@@ -252,7 +252,7 @@ $("#btnRegistrar").click(function () {
             contentType: 'application/json',
             dataType: 'json',
             success: function (user) {
-                if(user.id==null){
+                if (user == null) {
                     $.ajax({
                         url: 'http://localhost:8080/api/user/new',
                         data: JSON.stringify({
@@ -278,23 +278,23 @@ $("#btnRegistrar").click(function () {
                                 //$("#email").focus();
                             } else {
                                 alert('Cuenta creada de forma correcta.');
-                                //$("#exampleModalToggle2").modal("hide");
+                                $("#exampleModalToggle2").modal("hide");
                                 $(':input').val('');
                                 $("#id").focus();
                                 //consultarUsers();
                             }
                         }
-                    }).fail( function() {
+                    }).fail(function () {
                         alert("Hubo un error en la aplicación, intentelo más tarde.");
                     });
-                }else{
+                } else {
                     alert("El id del usuario ya existe, por favor intente con uno diferente");
                 }
             }
-        }).fail( function() {
+        }).fail(function () {
             alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
-        
+
     }
 });
 /**********************************************************************************************************************/
@@ -345,7 +345,7 @@ function consultarProductos() {
             console.log(result);
         },*/
 
-    }).fail( function() {
+    }).fail(function () {
         alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
@@ -371,7 +371,7 @@ function borrarProducto(id) {
             console.log(result);
         },*/
 
-    }).fail( function() {
+    }).fail(function () {
         alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
@@ -420,7 +420,7 @@ function editarProducto(id) {
             console.log(result);
         },*/
 
-    }).fail( function() {
+    }).fail(function () {
         alert("Hubo un error en la aplicación, intentelo más tarde.");
     });
 }
@@ -474,7 +474,7 @@ function actualizarProducto() {
                 $('#btnRegistrarClone').attr('style', 'display: block !important');
                 $('#btnActualizarClone').attr('style', 'display: none !important');
             }
-        }).fail( function() {
+        }).fail(function () {
             alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
@@ -503,34 +503,50 @@ $("#btnRegistrarClone").click(function () {
         /*$("#validar").modal("show");*/
     } else {
         $.ajax({
-            url: 'http://localhost:8080/api/clone/new',
-            data: JSON.stringify({
-                "id": id,
-                "brand": marca,
-                "procesor": procesador,
-                "os": os,
-                "description": descripcion,
-                "memory": memoria,
-                "hardDrive": almacenamiento,
-                "availability": stock,
-                "price": precio,
-                "quantity": cantidad,
-                "photography": foto
-            }),
-            type: 'POST',
+            url: 'http://localhost:8080/api/clone/'+id,
+            type: 'GET',
             contentType: 'application/json',
             dataType: 'json',
-            //error: function (result) { alert('Error: Ver log para detalles.'); console.log(result); },
-            success: function (respuesta) {
-                console.log(respuesta);
-                alert("Producto Registrado");
-                $(':input').val('');
-                $("#idClone").focus();
-
+            success: function (clone) {
+                if(clone==null){
+                    $.ajax({
+                        url: 'http://localhost:8080/api/clone/new',
+                        data: JSON.stringify({
+                            "id": id,
+                            "brand": marca,
+                            "procesor": procesador,
+                            "os": os,
+                            "description": descripcion,
+                            "memory": memoria,
+                            "hardDrive": almacenamiento,
+                            "availability": stock,
+                            "price": precio,
+                            "quantity": cantidad,
+                            "photography": foto
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        //error: function (result) { alert('Error: Ver log para detalles.'); console.log(result); },
+                        success: function (respuesta) {
+                            console.log(respuesta);
+                            alert("Producto Registrado");
+                            $(':input').val('');
+                            $("#idClone").focus();
+                            $("#exampleModalToggle2").modal("hide");
+                        }
+                    }).fail(function () {
+                        alert("Hubo un error en la aplicación, intentelo más tarde.");
+                    });
+                }else{
+                    alert("El id del producto ya está registrado, cambielo e intente de nuevo");
+                }
+                
             }
-        }).fail( function() {
+        }).fail(function () {
             alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
+
     }
 });
 /**********************************************************************************************************************/
