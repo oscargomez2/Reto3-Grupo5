@@ -86,7 +86,7 @@
     </div>
     <!-- fin ordenes asesores comerciales -->
 
-
+    <!-- Modal detalle orden -->
     <div class="modal fade" id="registrarOrden" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 90% !important;">
             <div class="modal-content" style="background-color: #2E4C6D;">
@@ -122,6 +122,38 @@
             </div>
         </div>
     </div>
+    <!-- Fin modal detalle orden -->
+
+    <!-- Modal editar orden -->
+    <div class="modal fade" id="editarOrdenM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary bg-opacity-25">
+                    <h5 class="modal-title" id="exampleModalLabel">EDITAR ESTADO DE LA ORDEN</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-secondary bg-opacity-25">
+                    <table class="table table-bordered text-center align-middle">
+                        <thead style="background-color: #98BAE7;">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>No.Pedido</th>
+                                <th>Estado</th>
+                                <th>Cambiar Estado</th>
+                                <th>Guardar</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-black" style="background-color: #39A6A3;" id="infoEditar">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer bg-secondary bg-opacity-25">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin modal editar orden -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
