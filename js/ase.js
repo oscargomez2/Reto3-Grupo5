@@ -150,7 +150,7 @@ function registrarOrden() {
                                     contentType: 'application/json',
                                     dataType: 'json',
                                     success: function (order) {
-                                        if (order == null) {
+                                        if (order.id == null) {
                                             $.ajax({
                                                 url: 'http://localhost:8080/api/order/new',
                                                 type: 'POST',
@@ -166,6 +166,9 @@ function registrarOrden() {
                                                 dataType: 'json',
                                                 success: function (order) {
                                                     alert("La orden fue registrada con éxito");
+                                                    $(":input").val("");
+                                                    $( ":input:checkbox" ).prop( "checked", false );
+                                                    $("#idOrden").focus();
                                                     console.log(order);
                                                 }
                                             }).fail(function () {
@@ -209,7 +212,7 @@ function listaProductos() {
             $("#infoCloneOrden").empty();
             if (clone.length == 0) {
                 let row = $("<tr>");
-                row.append($("<td colspan='8' class='fw-bolder text-uppercase'>").text("no hay registros"));
+                row.append($("<td colspan='6' class='fw-bolder text-uppercase'>").text("no hay registros"));
                 $("#infoCloneOrden").append(row);
             } else {
                 clone.forEach(element => {
@@ -218,15 +221,15 @@ function listaProductos() {
                     row.append($("<td>").text(element.description));
                     row.append($("<td>").text(element.price));
                     row.append($("<td>").append("<img src='" + element.photography + "' width='100%' height='50px' alt='PC'>"));
-                    row.append($("<td> <input type='checkbox' id='" + element.id + "'>"));
-                    row.append($("<td> <input type='number' id='" + element.id + "Cant' placeholder='Cant' class='form-control'>"));
+                    row.append($("<td> <input class='form-check-input' type='checkbox' id='" + element.id + "'>"));
+                    row.append($("<td> <input class='form-control fondo-input' type='number' id='" + element.id + "Cant' placeholder='Cantidad' class='form-control'>"));
                     $("#infoCloneOrden").append(row);
                 });
             }
         },
         error: function (result) {
             var row = $("<tr>");
-            row.append($("<td colspan='8' class='fw-bolder text-uppercase'>").text("no se pudo consultar los productos"));
+            row.append($("<td colspan='6' class='fw-bolder text-uppercase'>").text("no se pudo consultar los productos"));
             $("#infoCloneOrden").append(row);
         }
     }).fail(function () {

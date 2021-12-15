@@ -200,3 +200,5 @@ function verDetalle(idOrder) {
     });
     $("#registrarOrden").modal("show");
 }
+
+// 28/12/21 10:00 FERNANDA GAITAN 

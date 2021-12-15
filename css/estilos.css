@@ -6,6 +6,10 @@ body {
 }
 header {
     border-bottom: 1px solid grey;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
 }
 header img {
     width: 100%;
@@ -53,4 +57,44 @@ i {
 .btn:focus {
     outline: none;
     box-shadow: none;
-  }
+}
+
+.espacio {
+    padding-top: 10rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+footer {
+    /*height: 10rem;*/
+    margin-top: 10rem;
+    border-top: 1px solid grey;
+}
+
+.color-f {
+    /*background-color: #3E8E7E !important;*/
+    background-color: #055052;
+    color: #EEEEEE !important;
+}
+
+.fondo-input {
+    background-color: #c1d6cc;
+}
+.fondo-input:focus{
+    background-color: #c1d6cc;
+}
+
+.carrito {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+#cpro {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+.cargar-clone {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}

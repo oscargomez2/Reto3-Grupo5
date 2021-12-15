@@ -152,10 +152,12 @@ function editarUser(id) {
             $("#id").val(user.id);
             $("#cedula").val(user.identification);
             $("#nombre").val(user.name);
+            $("#cumpleaños").val(user.birthtDay.split('T')[0]);
+            $("#mesnacimiento").val(user.monthBirthtDay);
             $("#direccion").val(user.address);
             $("#celular").val(user.cellPhone);
             $("#email").val(user.email);
-            $("#password").val(user.password);
+            $("#contraseña").val(user.password);
             $("#zona").val(user.zone);
             $("#tipo").val(user.type);
             $("#exampleModalToggle2").modal("show");
@@ -183,13 +185,15 @@ function actualizarUser() {
     var Id = $.trim($("#id").val());
     var Identificacion = $.trim($("#cedula").val());
     var Nombre = $.trim($("#nombre").val());
+    var Cumpleaños = $.trim($("#cumpleaños").val());
+    var MesN = $.trim($("#mesnacimiento").val());
     var Direccion = $.trim($("#direccion").val());
     var Celular = $.trim($("#celular").val());
     var Email = $.trim($("#email").val());
-    var Password = $.trim($("#password").val());
+    var Password = $.trim($("#contraseña").val());
     var Zona = $.trim($("#zona").val());
     var Tipo = $.trim($("#tipo").val());
-    if (Id == "" || Identificacion == "" || Nombre == "" || Direccion == "" || Celular == "" || Email == "" || Password == "" || Zona == "" || Tipo == "") {
+    if (Id == "" || Identificacion == "" || Nombre == "" || Direccion == "" || Celular == "" || Email == "" || Password == "" || Zona == "" || Tipo == "" || Cumpleaños == "" || MesN == "") {
         alert("Todos los campos son obligatorios");
         /*Nombre.Style("border-bottom: 1px solid grey");*/
         /*$("#nombre").css("border", "1px solid red");
@@ -201,6 +205,8 @@ function actualizarUser() {
                 "id": Id,
                 "identification": Identificacion,
                 "name": Nombre,
+                "birthtDay": Cumpleaños,
+                "monthBirthtDay": MesN,
                 "address": Direccion,
                 "cellPhone": Celular,
                 "email": Email,
@@ -211,7 +217,6 @@ function actualizarUser() {
             type: 'PUT',
             contentType: 'application/json',
             dataType: 'json',
-            //error: function (result) { alert('Error: Ver log para detalles.'); console.log(result); },
             success: function (respuesta) {
                 console.log(respuesta);
                 alert("Usuario actualizado");
@@ -234,13 +239,15 @@ $("#btnRegistrar").click(function () {
     var Id = $.trim($("#id").val());
     var Identificacion = $.trim($("#cedula").val());
     var Nombre = $.trim($("#nombre").val());
+    var Cumpleaños = $.trim($("#cumpleaños").val());
+    var MesN = $.trim($("#mesnacimiento").val());
     var Direccion = $.trim($("#direccion").val());
     var Celular = $.trim($("#celular").val());
     var Email = $.trim($("#email").val());
-    var Password = $.trim($("#password").val());
+    var Password = $.trim($("#contraseña").val());
     var Zona = $.trim($("#zona").val());
     var Tipo = $.trim($("#tipo").val());
-    if (Id == "" || Identificacion == "" || Nombre == "" || Direccion == "" || Celular == "" || Email == "" || Password == "" || Zona == "" || Tipo == "" || Tipo == null) {
+    if (Id == "" || Identificacion == "" || Nombre == "" || Direccion == "" || Celular == "" || Email == "" || Password == "" || Zona == "" || Tipo == "" || Tipo == null || Cumpleaños == "" || MesN == "") {
         alert("Todos los campos son obligatorios");
         /*Nombre.Style("border-bottom: 1px solid grey");*/
         /*$("#nombre").css("border", "1px solid red");
@@ -252,13 +259,15 @@ $("#btnRegistrar").click(function () {
             contentType: 'application/json',
             dataType: 'json',
             success: function (user) {
-                if (user == null) {
+                if (user.id == null) {
                     $.ajax({
                         url: 'http://localhost:8080/api/user/new',
                         data: JSON.stringify({
                             "id": Id,
                             "identification": Identificacion,
                             "name": Nombre,
+                            "birthtDay": Cumpleaños,
+                            "monthBirthtDay": MesN,
                             "address": Direccion,
                             "cellPhone": Celular,
                             "email": Email,
@@ -278,7 +287,7 @@ $("#btnRegistrar").click(function () {
                                 //$("#email").focus();
                             } else {
                                 alert('Cuenta creada de forma correcta.');
-                                $("#exampleModalToggle2").modal("hide");
+                                //$("#exampleModalToggle2").modal("hide");
                                 $(':input').val('');
                                 $("#id").focus();
                                 //consultarUsers();
@@ -316,7 +325,7 @@ function consultarProductos() {
             $("#infoProductos").empty();
             if (clone.length == 0) {
                 var row = $("<tr>");
-                row.append($("<td colspan='10' class='fw-bolder text-uppercase'>").text("NO hay registros en la base de datos"));
+                row.append($("<td colspan='11' class='fw-bolder text-uppercase'>").text("NO hay registros en la base de datos"));
                 $("#infoProductos").append(row);
             } else {
                 for (i = 0; i < clone.length; i++) {
@@ -334,6 +343,7 @@ function consultarProductos() {
                     }
                     row.append($("<td>").text(clone[i].price));
                     row.append($("<td>").text(clone[i].quantity));
+                    row.append($("<td>").append("<img src='" + clone[i].photography + "' alt='pc' width='100%' height='50px'>"));
                     row.append($("<td><button class='btn btn-danger me-2' onclick='borrarProducto(" + clone[i].id + ")'>Borrar</button>"
                         + "<button class='btn btn-warning text-white' onclick='editarProducto(" + clone[i].id + ")'>Editar</button>"));
                     $("#infoProductos").append(row);

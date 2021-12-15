@@ -16,46 +16,49 @@
 
     <!-- Header -->
     <header class="bg-dark">
-        <div class="container">
-            <div class="row mb-2">
-                <div class="col-3 pt-2">
-                    <a href="/">
-                        <img class="color" src="../logo/Sin título-9.svg" alt="Logo empresa">
-                    </a>
-                </div>
-                <div class="col-8 text-end">
-                    <ul class="m-0 pt-4">
-
-                        <li class="border border-info d-inline p-2 rounded-3 mx-2"><a href=""
-                                class="text-decoration-none text-white" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalToggle2">Registrar usuarios</a></li>
-                        <li class="border border-info d-inline p-2 rounded-3 mx-2"><a href=""
-                                class="text-decoration-none text-white" data-bs-toggle="modal"
-                                data-bs-target="#exampleModalToggle3">Registrar Productos</a></li>
-                        
-                        <!--<li id="name" class="text-white border border-info d-inline p-2 rounded-3 mx-2">GOKU</li>-->
-                        <!--<li id="name" class="border border-info d-inline p-2 rounded-3 mx-2 text-white"></li>-->
-                        <li id="nameUser" class="text-white border border-info d-inline p-2 rounded-3 ms-5"></li>
-                        
-                    </ul>
-                </div>
-                <div class="col text-end">
-                    <i id="close" class="bi bi-box-arrow-left p-0" style="font-size: 3rem; color: deeppink;"
-                    title="Cerrar Sesion"></i>
+        
+            <div class="container">
+                <div class="row mb-2">
+                    <div class="col-3 pt-2">
+                        <a href="/">
+                            <img class="color" src="../logo/Sin título-9.svg" alt="Logo empresa">
+                        </a>
+                    </div>
+                    <div class="col-8 text-end">
+                        <ul class="m-0 pt-4">
+    
+                            <li class="border border-info d-inline p-2 rounded-3 mx-2"><a href=""
+                                    class="text-decoration-none text-white" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalToggle2">Registrar usuarios</a></li>
+                            <li class="border border-info d-inline p-2 rounded-3 mx-2"><a href=""
+                                    class="text-decoration-none text-white" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalToggle3">Registrar Productos</a></li>
+                            
+                            <!--<li id="name" class="text-white border border-info d-inline p-2 rounded-3 mx-2">GOKU</li>-->
+                            <!--<li id="name" class="border border-info d-inline p-2 rounded-3 mx-2 text-white"></li>-->
+                            <li id="nameUser" class="text-white border border-info d-inline p-2 rounded-3 ms-5"></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col text-end">
+                        <i id="close" class="bi bi-box-arrow-left p-0" style="font-size: 3rem; color: deeppink;"
+                        title="Cerrar Sesion"></i>
+                    </div>
                 </div>
             </div>
-        </div>
+        
+        
     </header>
 
     <!-- Fin header -->
 
     <!-- Tablas -->
-    <div class="container mt-5">
+    <div class="container-fluid espacio">
         <div class="row">
             <div class="col">
                 <!--<h4>Informacion de los Registros</h4>-->
                 <div class="table-responsive">
-                    <table class="table table-dark table-bordered text-center align-middle caption-top">
+                    <table class="table table-bordered text-center align-middle caption-top">
                         <caption class="text-white text-center fs-1 text-uppercase mb-3">Informacion de los usuarios
                         </caption>
                         <thead class="table-success">
@@ -71,7 +74,7 @@
                                 <th>Accion</th>
                             </tr>
                         </thead>
-                        <tbody class="text-white" id="infoUsers">
+                        <tbody class="text-white color-f" id="infoUsers">
 
                         </tbody>
                     </table>
@@ -82,7 +85,7 @@
             <div class="col">
                 <!--<h4>Informacion de los Productos</h4>-->
                 <div class="table-responsive">
-                    <table class="table table-dark table-bordered text-center align-middle caption-top">
+                    <table class="table table-bordered text-center align-middle caption-top">
                         <caption class="text-white text-center fs-1 text-uppercase mb-3">Informacion de los Productos
                         </caption>
                         <thead class="table-success">
@@ -96,10 +99,11 @@
                                 <th>Stock</th>
                                 <th>Precio</th>
                                 <th>Cantidad</th>
+                                <th>Foto</th>
                                 <th>Accion</th>
                             </tr>
                         </thead>
-                        <tbody class="text-white" id="infoProductos"></tbody>
+                        <tbody class="text-white color-f" id="infoProductos"></tbody>
                     </table>
                 </div>
             </div>
@@ -107,6 +111,22 @@
     </div>
 
     <!-- Fin tablas -->
+
+    <!-- FOOTER -->
+    <footer class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col text-end text-white fs-6 mt-4 mb-3">
+                    <span>Oscar Fabian Gomez Jurado</span><br>
+                    <span>Marisol Rodriguez Gutierrez</span><br>
+                    <span>Nicolas Albarracin Pineros</span><br><br>
+                    
+                    <span class="fs-6">Copyright&copy; 2021 Todos los derechos reservados</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fin footer -->
 
     <!-- Modal registro -->
     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
@@ -142,6 +162,21 @@
                             </div>
                             <div class="col">
                                 <div class="fw-bold">
+                                    <label for="cumpleaños" class="form-label">Cumpleaños:</label>
+                                    <input type="date" class="form-control" id="cumpleaños">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="mesnacimiento" class="form-label">Mes Nacimiento:</label>
+                                    <input type="text" class="form-control" id="mesnacimiento" placeholder="Mes Nacimiento">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
                                     <label for="direccion" class="form-label">Direccion:</label>
                                     <input type="text" class="form-control" id="direccion" placeholder="Direccion">
                                 </div>
@@ -166,8 +201,8 @@
                         <div class="row mb-3 justify-content-md-center">
                             <div class="col">
                                 <div class="fw-bold">
-                                    <label for="password" class="form-label">Contraseña:</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                    <label for="contraseña" class="form-label">Contraseña:</label>
+                                    <input type="password" class="form-control" id="contraseña" placeholder="Contraseña">
                                 </div>
                             </div>
                             <div class="col">

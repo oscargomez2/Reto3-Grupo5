@@ -11,6 +11,7 @@ $("#login").click(function () {
             contentType: 'application/json',
             dataType: 'json',
             success: function (user) {
+                console.log(user);
                 if(user.id==null){
                     alert("Usuario o contraseña incorrectos")
                 }else{
