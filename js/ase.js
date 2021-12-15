@@ -96,9 +96,11 @@ function getClones() {
     });
 }
 /****************************************************************************************************************** */
+
 //Metodos para registrar la orden
-
-
+/**
+ * Registrar una nueva orden
+ */
 function registrarOrden() {
     var datosUser = localStorage.getItem('datos');
     datosUser = JSON.parse(datosUser);
@@ -194,6 +196,9 @@ function registrarOrden() {
 
 }
 
+/**
+ * Listar los productos
+ */
 function listaProductos() {
     $.ajax({
         url: 'http://localhost:8080/api/clone/all',
